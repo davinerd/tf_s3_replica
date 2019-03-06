@@ -151,4 +151,18 @@ resource "aws_s3_bucket" "log_bucket" {
 
 resource "aws_s3_bucket_public_access_block" "s3_public_access_block" {
   bucket = "${local.s3_bucket_id}"
+
+  block_public_acls = true
+  block_public_policy = true
+  restrict_public_buckets = true
+  ignore_public_acls = true
+}
+
+resource "aws_s3_bucket_public_access_block" "s3_replica_public_access_block" {
+  bucket = "${aws_s3_bucket.s3_repl_bucket.id}"
+
+  block_public_acls = true
+  block_public_policy = true
+  restrict_public_buckets = true
+  ignore_public_acls = true
 }
