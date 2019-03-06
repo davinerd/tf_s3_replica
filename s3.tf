@@ -159,6 +159,7 @@ resource "aws_s3_bucket_public_access_block" "s3_public_access_block" {
 }
 
 resource "aws_s3_bucket_public_access_block" "s3_replica_public_access_block" {
+  provider = "aws.repl"
   bucket = "${aws_s3_bucket.s3_repl_bucket.id}"
 
   block_public_acls = true
