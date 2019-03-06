@@ -3,9 +3,9 @@ output "s3_policy_arn" {
 }
 
 output "s3_bucket" {
-  value = "${aws_s3_bucket.s3_bucket.id}"
+  value = "${local.s3_bucket_id}"
 }
 
 output "s3_bucket_arn" {
-  value = "${aws_s3_bucket.s3_bucket.arn}"
+  value = "${local.s3_bucket_arn}"
 }

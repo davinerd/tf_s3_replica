@@ -30,8 +30,8 @@ data "aws_iam_policy_document" "s3_access_policy" {
     effect = "Allow"
         
     resources = [
-      "${aws_s3_bucket.s3_bucket.arn}/*",
-      "${aws_s3_bucket.s3_bucket.arn}",
+      "${local.s3_bucket_arn}/*",
+      "${local.s3_bucket_arn}",
       "${aws_s3_bucket.s3_repl_bucket.arn}/*",
       "${aws_s3_bucket.s3_repl_bucket.arn}"
     ]
@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "replica_access_policy" {
     effect = "Allow"
         
     resources = [
-      "${aws_s3_bucket.s3_bucket.arn}"
+      "${local.s3_bucket_arn}"
     ]
   }
 
@@ -60,7 +60,7 @@ data "aws_iam_policy_document" "replica_access_policy" {
     effect = "Allow"
         
     resources = [
-      "${aws_s3_bucket.s3_bucket.arn}/*"
+      "${local.s3_bucket_arn}/*"
     ]
   }
 
