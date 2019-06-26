@@ -9,13 +9,13 @@ variable "access_roles_name" {
 }
 
 variable "force_destroy" {
-  type        = "bool"
+  type        = bool
   description = "S3 bucket force destroy"
   default     = false
 }
 
 variable "logs_enabled" {
-  type = "bool"
+  type = bool
   description = "Enable/Disable bucket logging"
   default = true
 }
