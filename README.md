@@ -27,7 +27,7 @@ EOF
 }
 
 module "s3_repl" {
-  source = "git::https://github.com/Cimpress-MCP/terraform.git//s3_replication"
+  source = "git::https://github.com/davinerd/tf_s3_replica"
   
   main_bucket_name = "my-new-bucket"
 
@@ -40,6 +40,6 @@ module "s3_repl" {
     "Squad" = "Ops"
   }
 
-  access_roles_name = ["${aws_iam_role.access_role.name}"]
+  access_roles_name = [aws_iam_role.access_role.name]
 }
 ```
