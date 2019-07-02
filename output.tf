@@ -11,9 +11,9 @@ output "s3_bucket_arn" {
 }
 
 output "s3_policy_json" {
-  value = data.aws_iam_policy_document.s3_access_policy.json
+  value = jsondecode(data.aws_iam_policy_document.s3_access_policy.json)
 }
 
 output "s3_replica_policy_json" {
-  value = data.aws_iam_policy_document.replica_access_policy.json
+  value = jsondecode(data.aws_iam_policy_document.replica_access_policy.json)
 }
