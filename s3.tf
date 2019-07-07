@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "s3_bucket" {
   }
 
   logging {
-    target_bucket = aws_s3_bucket.log_bucket.id
+    target_bucket = aws_s3_bucket.log_bucket[0].id
   }
 
   lifecycle_rule {
@@ -143,6 +143,7 @@ resource "aws_s3_bucket" "s3_repl_bucket" {
 
 # logging of the source bucket
 resource "aws_s3_bucket" "log_bucket" {
+  count  = var.logs_enabled ? 1 : 0
   bucket = "${var.main_bucket_name}-logs"
   acl    = "log-delivery-write"
 
@@ -189,7 +190,7 @@ resource "aws_s3_bucket_public_access_block" "s3_replica_public_access_block" {
 
 resource "aws_s3_bucket_public_access_block" "s3_logs_public_access_block" {
   count  = var.logs_enabled ? 1 : 0
-  bucket = aws_s3_bucket.log_bucket.id
+  bucket = aws_s3_bucket.log_bucket[0].id
 
   block_public_acls       = true
   block_public_policy     = true
