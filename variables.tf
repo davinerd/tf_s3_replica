@@ -20,6 +20,12 @@ variable "logs_enabled" {
   default     = true
 }
 
+variable "s3_actions" {
+  type = list(string)
+  default = ["s3:*"]
+}
+
+
 ################## REPLICA ###############
 #
 #

@@ -25,9 +25,8 @@ EOF
 #
 data "aws_iam_policy_document" "s3_access_policy" {
   statement {
-    actions = [
-      "s3:*",
-    ]
+    actions = var.s3_actions
+
     effect = "Allow"
 
     resources = [
