@@ -6,6 +6,7 @@ variable "main_bucket_name" {
 variable "access_roles_name" {
   type        = list(string)
   description = "list of roles that need access to the buckets"
+  default = []
 }
 
 variable "force_destroy" {
@@ -22,7 +23,7 @@ variable "logs_enabled" {
 
 variable "s3_actions" {
   type = list(string)
-  default = ["s3:*"]
+  default = []
 }
 
 

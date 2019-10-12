@@ -24,6 +24,7 @@ EOF
 #
 #
 data "aws_iam_policy_document" "s3_access_policy" {
+  count = length(var.s3_actions) > 0 ? 1 : 0
   statement {
     actions = var.s3_actions
 
@@ -86,8 +87,9 @@ data "aws_iam_policy_document" "replica_access_policy" {
 }
 
 resource "aws_iam_policy" "s3_policy" {
+  count = length(var.s3_actions) > 0 ? 1 : 0
   name = "${var.main_bucket_name}-policy"
-  policy = data.aws_iam_policy_document.s3_access_policy.json
+  policy = data.aws_iam_policy_document.s3_access_policy[0].json
 }
 
 resource "aws_iam_policy" "replica_policy" {
@@ -102,8 +104,9 @@ resource "aws_iam_policy_attachment" "replica_attach" {
 }
 
 resource "aws_iam_policy_attachment" "s3_attach" {
+  count = length(var.access_roles_name) > 0 ? 1 : 0
   name = "${var.main_bucket_name}-policy_attachment"
   roles = var.access_roles_name
-  policy_arn = aws_iam_policy.s3_policy.arn
+  policy_arn = aws_iam_policy.s3_policy[0].arn
 }
 
