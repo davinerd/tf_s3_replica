@@ -40,6 +40,8 @@ module "s3_repl" {
     "Squad" = "Ops"
   }
 
+  s3_actions = ["s3:*"]
+
   access_roles_name = [aws_iam_role.access_role.name]
 }
 ```
